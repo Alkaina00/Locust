@@ -16,3 +16,17 @@ def generationFlightsDates():
         (datetime.now() + timedelta(days=random.randrange(10, 20))).strftime("%m/%d/%Y"))
 
     return dates_list
+
+def processCancelRequestBody(ids_list=list, cg_list=list):
+    long_flightsID = ''
+    long_cgifields = ''
+
+    count = len(ids_list)
+
+    for i in range(count):
+        long_flightsID = long_flightsID + f"&flightID={ids_list[i]}"
+        long_cgifields = long_cgifields + f"&.cgifields={cg_list[i]}"
+
+    done_body_cancel = f'1=on{long_flightsID}&removeFlights.x=56&removeFlights.y=10{long_cgifields}'
+
+    return done_body_cancel
